@@ -1,0 +1,96 @@
+{
+  "name": "ui-insight",
+  "displayName": "UI Insight",
+  "description": "AI-powered UI improvement suggestions for React/Next.js using Groq, OpenAI, or Anthropic",
+  "publisher": "ShreyashPG",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Linters",
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ui-insight.analyzeComponent",
+        "title": "UI Insight: Analyze Component"
+      },
+      {
+        "command": "ui-insight.applyRefactor",
+        "title": "UI Insight: Apply Refactor"
+      }
+    ],
+    "configuration": {
+      "title": "UI Insight",
+      "properties": {
+        "uiInsight.styleSystem": {
+          "type": "string",
+          "default": "tailwind",
+          "enum": [
+            "tailwind",
+            "styled-components",
+            "css-modules"
+          ],
+          "description": "Preferred styling system"
+        },
+        "uiInsight.themeTone": {
+          "type": "string",
+          "default": "light",
+          "enum": [
+            "light",
+            "dark"
+          ],
+          "description": "Theme preference"
+        },
+        "uiInsight.aiProvider": {
+          "type": "string",
+          "default": "groq",
+          "enum": [
+            "groq",
+            "openai",
+            "anthropic",
+            "local"
+          ],
+          "description": "AI provider (Groq is recommended for speed)"
+        },
+        "uiInsight.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for your chosen AI provider"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@babel/parser": "^7.23.0",
+    "@babel/traverse": "^7.23.0",
+    "@babel/types": "^7.23.0",
+    "groq-sdk": "^0.9.0",
+    "openai": "^4.20.0"
+  }
+}
